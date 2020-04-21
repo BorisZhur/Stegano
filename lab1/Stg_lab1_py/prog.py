@@ -95,34 +95,7 @@ def replace2(s):
     fOut.close()
     fIn.close()
 
-# def replace1(s, oldSymb0, newSymb0, oldSymb1, newSymb1):
-#     fIn = open("input.txt", "r", encoding='utf-8')
-#     fOut = open("output.txt", "w", encoding='utf-8')
-#     i = 0
-#     symbol = fIn.read(1);
-#     while symbol:
-#         for i in range(0,len(s),1):
-#             if i < len(s) and (symbol == oldSymb0):
-#                 if s[i] == '0':
-#                     fOut.write(newSymb0)
-#
-#             elif i < len(s) and (symbol == oldSymb1):
-#                 if s[i] == '1':
-#                     fOut.write(newSymb1)
-#
-#             elif i == len(s) and (symbol == oldSymb0):
-#                 if s[i] == '0':
-#                     fOut.write(newSymb0)
-#
-#             elif i == len(s) and (symbol == oldSymb1):
-#                 if s[i] == '1':
-#                     fOut.write(newSymb1)
-#
-#             symbol = fIn.read(1);
-#     if i < len(s):
-#         print('Нужен контейнер побольше')
-#     fOut.close()
-#     fIn.close()
+
 
 tmp = (input("1 - Спрятать слово; 2 - Найти слово\n"))
 if not tmp:
@@ -145,14 +118,14 @@ if task == 1:
         word = input("Введите слово: \n")
     binWord = ''.join(format(ord(i), 'b') for i in word)
     if stegoType == 1:
-        replace3(binWord, 'е', 'E')
+        replace3(binWord, 'е', 'e')
     elif stegoType == 2:
         replace2(binWord)
     elif stegoType == 3:
         replace3(binWord, '—', '-')
 elif task == 2:
     if stegoType == 1:
-        search3('е', 'E')
+        search3('е', 'e')
     elif stegoType == 2:
         search2()
     elif stegoType == 3:
