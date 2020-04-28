@@ -82,13 +82,65 @@ def hide(wrd):
 
     del draw
 
+def lsb_out():
+    image = Image.open("output.bmp")
+    draw = ImageDraw.Draw(image)
+    w = image.size[0]
+    h = image.size[1]
+    pixels = image.load()
+    for i in range(w):
+        for j in range(h):
+            r=pixels[i,j][0]
+            g = pixels[i, j][1]
+            b = pixels[i, j][2]
+            if r%2==0:
+                r=0
+            else:
+                r=255
+            if g%2==0:
+                g=0
+            else:
+                g=255
+            if b%2==0:
+                b=0
+            else:
+                b=255
+            draw.point((i,j),(r,g,b))
+    image.save("LSB.bmp", "BMP")
+def lsb_in():
+    image = Image.open("input.bmp")
+    draw = ImageDraw.Draw(image)
+    w = image.size[0]
+    h = image.size[1]
+    pixels = image.load()
+    for i in range(w):
+        for j in range(h):
+            r=pixels[i,j][0]
+            g = pixels[i, j][1]
+            b = pixels[i, j][2]
+            if r%2==0:
+                r=0
+            else:
+                r=255
+            if g%2==0:
+                g=0
+            else:
+                g=255
+            if b%2==0:
+                b=0
+            else:
+                b=255
+            draw.point((i,j),(r,g,b))
+    image.save("LSB_in.bmp", "BMP")
+
 findType = input("Вы хотите встроить слово? д/н\n")
 if findType == 'н':
         seek()
 elif findType=='д':
     word = input("Введите слово - ")
     #k = input("Количество слов - ")
-    ls = [1,2,3,5,10,20,30,40,50]
+    #ls = [1,2,3,5,10,20,30,40,50]
+    ls = [250]
     for k in ls:
         wordInBin = ''.join(str(toBits(ord(i))) for i in word)
         for j in range(int(k)-1):
@@ -96,6 +148,8 @@ elif findType=='д':
         #wordInBin = ''.join(str(toBits(ord(i))) for i in word)+'00000000000'
         hide(wordInBin+'00000000000')
         calcPNSR(k)
+        lsb_out()
+        lsb_in()
 else:
     print('wrong input')
     exit(0)
