@@ -13,10 +13,18 @@ def toBits (num):
 
     return a
 
+def psnr(img1, img2):
+    mse = numpy.mean( (img1 - img2) ** 2 )
+    if mse == 0:
+        return 100
+    PIXEL_MAX = 255.0
+    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+
 def calcPNSR(k):
     old = cv2.imread("input.bmp")
     changed = cv2.imread("output.bmp", 1)
-    psnrcv = cv2.PSNR(old, changed)
+    #psnrcv = cv2.PSNR(old, changed)
+    psnrcv = psnr(old, changed)
     print('psnr(',k,') = ', psnrcv)
 
 def change(curBit, num):
@@ -133,10 +141,13 @@ def lsb_in():
             draw.point((i,j),(r,g,b))
     image.save("LSB_in.bmp", "BMP")
 
-findType = input("Вы хотите встроить слово? д/н\n")
-if findType == 'н':
+
+
+
+findType = input("1 - найти слово 0 - встроить слово \n")
+if findType == '1':
         seek()
-elif findType=='д':
+elif findType=='0':
     word = input("Введите слово - ")
     #k = input("Количество слов - ")
     #ls = [1,2,3,5,10,20,30,40,50]
