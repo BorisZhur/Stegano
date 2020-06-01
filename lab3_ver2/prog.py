@@ -1,4 +1,4 @@
-import cv2
+
 
 from cv2 import dct, idct
 from PIL import Image
@@ -8,8 +8,8 @@ def int_r(num):
     num = int(num + (0.5 if num > 0 else -0.5))
     return num
 
-#insertion = 'Привет всем! Меня зовут Катя, я выполнила третью лабораторную работу по стеганографии'
-insertion = str(input("Введите слово "))
+
+insertion = str(input("Введите слово\n"))
 insertion2 = ''
 for code in insertion.encode('cp1251'):
     a = bin(code)[2:]
@@ -19,21 +19,25 @@ for code in insertion.encode('cp1251'):
 #print('начальное', insertion2)
 
 
-image = Image.open("img.bmp") #Открываем изображение.
+image = Image.open("input.bmp") #Открываем изображение.
 width = image.size[0] #Определяем ширину.
 height = image.size[1] #Определяем высоту.
 obj = image.load()
 
-image1 = Image.open("img1.bmp")
+image1 = Image.open("input1.bmp")
 obj1 = image1.load()
 pix = np.array(image.getdata(1))
 pix = pix.reshape(height,width)
 len_ins = 0
 for i in range(int(height / 8)):
     for j in range(int(width / 8)):
+        print("i ",i)
+        print("\nj ",j)
         matrix = np.array(pix[8 * i:8 * (i + 1), 8 * j:8 * (j + 1)])
         matrix = matrix.astype('float32')
         dct_coef = dct(matrix)
+        print("\nmatrix\n",matrix)
+        print("\ndct_coef\n",dct_coef)
         if (len_ins < len(insertion2)):
             for k in range(8):
                 for l in range(8):
@@ -58,7 +62,7 @@ for i in range(int(height / 8)):
                 x[1] = new_matrix[h]
                 obj1[j * 8 + rel_y, i * 8 + rel_x] = tuple(x)
 
-image1.save("tmp.bmp", "BMP")
+image1.save("output.bmp", "BMP")
 
 message_bin = []
 #Cчитывание сообщения
