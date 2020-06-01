@@ -34,6 +34,8 @@ for i in range(int(height / 8)):
         matrix = np.array(pix[8 * i:8 * (i + 1), 8 * j:8 * (j + 1)])
         matrix = matrix.astype('float32')
         dct_coef = dct(matrix)
+        print("matrix\n"+matrix)
+        print("dct_coef\n"+dct_coef)
         if (len_ins < len(insertion2)):
             for k in range(8):
                 for l in range(8):
