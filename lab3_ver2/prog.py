@@ -11,7 +11,7 @@ def write(binWrd):
     height = image.size[1] #Определяем высоту.
     obj = image.load()
     
-    imageOutput = Image.open("input1.bmp")
+    imageOutput = Image.open("input.bmp")
     obj1 = imageOutput.load()
     pix = np.array(image.getdata(2))
     pix = pix.reshape(height,width)
@@ -50,12 +50,12 @@ def read(wrd,binWrd):
     imageOutput = Image.open("output.bmp")
     width = imageOutput.size[0]  # Определяем ширину.
     height = imageOutput.size[1]  # Определяем высоту.
-    pix1 = np.array(imageOutput.getdata(1))
-    pix1 = pix1.reshape(height,width)
+    pix = np.array(imageOutput.getdata(1))
+    pix = pix.reshape(height,width)
     binWrdLen = 0
     for i in range(int(height / 8)):
         for j in range(int(width / 8)):
-            matrix = np.array(pix1[8 * i:8 * (i + 1), 8 * j:8 * (j + 1)])
+            matrix = np.array(pix[8 * i:8 * (i + 1), 8 * j:8 * (j + 1)])
             matrix = matrix.astype('float32')
             matrix_dct = dct(matrix)
             if (binWrdLen < len(binWrd)):

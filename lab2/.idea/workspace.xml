@@ -20,9 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7b637d65-0ae6-407a-b203-49a8e195ffd3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/LSB.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/LSB.bmp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/output.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/output.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3_ver2/input1.bmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3_ver2/output.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3_ver2/output.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab3_ver2/prog.py" beforeDir="false" afterPath="$PROJECT_DIR$/../lab3_ver2/prog.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +48,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab3" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lab3_ver2/prog.py" />
   </component>
   <component name="RunManager">
     <configuration name="prog" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -109,11 +109,11 @@
     </state>
     <state x="686" y="287" key="#Notifications/0.0.1536.824@0.0.1536.824" timestamp="1588029878962" />
     <state x="858" y="362" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1588057648457" />
-    <state x="634" y="263" key="FileChooserDialogImpl" timestamp="1590428198492">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="792" y="332" key="FileChooserDialogImpl" timestamp="1591086139397">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="634" y="263" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1590428198492" />
-    <state x="792" y="332" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1589875918902" />
+    <state x="792" y="332" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1591086139397" />
     <state width="1362" height="266" key="GridCell.Tab.0.bottom" timestamp="1589140256422">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
