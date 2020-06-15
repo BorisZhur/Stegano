@@ -1,5 +1,7 @@
 
 
+import cv2
+import math
 from cv2 import dct, idct
 from PIL import Image
 import numpy as np
@@ -9,12 +11,13 @@ def write(binWrd):
     image = Image.open("input.bmp") #Открываем изображение.
     width = image.size[0] #Определяем ширину.
     height = image.size[1] #Определяем высоту.
-    obj = image.load()
     
     imageOutput = Image.open("input.bmp")
-    obj1 = imageOutput.load()
-    pix = np.array(image.getdata(2))
+
+    pix = np.array(image.getdata(1))
     pix = pix.reshape(height,width)
+    obj = image.load()
+    obj1 = imageOutput.load()
     binWrdLen = 0
     for i in range(int(height / 8)):
         for j in range(int(width / 8)):
@@ -34,7 +37,6 @@ def write(binWrd):
                             matrix_dct[k][l] = matrix_dct[k][l] - matrix_dct[k][l] % 2 + int(binWrd[binWrdLen])
                         binWrdLen += 1
                 #print(idct(matrix_dct))
-                matrix_dct[0][0] = matrix_dct[0][0]/4
                 new_matrix = [round(x) for x in idct(matrix_dct).reshape(1,64)[0]]
                 #print('new matrix', new_matrix)
                 for h in range(0, 64):
@@ -84,15 +86,35 @@ def read(wrd,binWrd):
     print('При передаче искажено %d бит' % number_of_mistakes)
     print('или %f процентов ' % (100.*(float(number_of_mistakes)/ len(binWrd))))
 
+def psnr(img1, img2):
+    mse = np.mean( (img1 - img2) ** 2 )
+    if mse == 0:
+        return 100
+    PIXEL_MAX = 255.0
+    return 20 * math.log10(PIXEL_MAX / math.sqrt(mse))
+
+def calcPNSR(k):
+    old = cv2.imread("input.bmp")
+    changed = cv2.imread("output.bmp", 1)
+    #psnrcv = cv2.PSNR(old, changed)
+    psnrcv = psnr(old, changed)
+    print('psnr(',k,') = ', psnrcv)
 
 
-
-msg = str(input("Введите слово\n"))
-binWrd = ''
-for code in msg.encode('cp1251'):
-    a = bin(code)[2:]
-    while len(a) < 8:
-        a = '0' + a
-    binWrd += a
-write(binWrd)
-read(msg,binWrd)
+wrd = str(input("Введите слово\n"))
+msg = ''
+s = [1,2,3,5,10,20,30,40,50,100,150,200,250,300,400,500,1000]
+#s = [250]
+for k in s:
+    msg = ''
+    for i in range (int(k)):
+        msg += wrd
+    binWrd = ''
+    for code in msg.encode('cp1251'):
+        a = bin(code)[2:]
+        while len(a) < 8:
+            a = '0' + a
+        binWrd += a
+    write(binWrd)
+    read(msg,binWrd)
+    calcPNSR(k)
